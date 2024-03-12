@@ -11,11 +11,11 @@ export class FirebaseService implements OnModuleInit {
   onModuleInit() {
     const params = {
       projectId: this.configService.get<string>('FIREBASE_PROJECT_ID'),
-      privateKey: this.configService.get<string>('FIREBASE_PRIVATE_KEY').replace(/\\n/g, '\n'), // Asegúrate de reemplazar correctamente los saltos de línea
+      privateKey: this.configService.get<string>('FIREBASE_PRIVATE_KEY'),
       clientEmail: this.configService.get<string>('FIREBASE_CLIENT_EMAIL'),
     };
 
-    if (!admin.apps.length) { // Esto evita inicializar la app más de una vez
+    if (!admin.apps.length) { 
       admin.initializeApp({
         credential: admin.credential.cert(params),
       });
